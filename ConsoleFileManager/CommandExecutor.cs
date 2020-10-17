@@ -35,6 +35,9 @@ namespace ConsoleFileManager
                     return app.Run(args);
                 }
             }
+            if(args[0] == EXIT_COMMAND) {
+                return "Good byte!\n";
+            }
             return "Unknown command. Type \"help\" to get a list of available commands.";
         }
     }

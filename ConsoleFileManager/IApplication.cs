@@ -6,6 +6,7 @@ namespace ConsoleFileManager
 {
     interface IApplication
     {
+        // Application name to call it from command line.
         string Name { get; set; }
         string[] Arguments { get; set; }
         string Run(string[] args);

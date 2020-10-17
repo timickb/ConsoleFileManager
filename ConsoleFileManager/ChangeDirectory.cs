@@ -38,8 +38,8 @@ namespace ConsoleFileManager
                 {
                     if(Directory.Exists(path))
                     {
-                        CommandExecutor.CurrentUserPath = path;
-                        return $"Successfully moved to {path}";
+                        CommandExecutor.CurrentUserPath = Path.GetFullPath(path);
+                        return $"Successfully moved to {CommandExecutor.CurrentUserPath}";
                     } else
                     {
                         return "This path doesn't exist.";
@@ -55,8 +55,8 @@ namespace ConsoleFileManager
                 {
                     if(Directory.Exists(path))
                     {
-                        CommandExecutor.CurrentUserPath = Utils.PrettifyPath(path);
-                        return $"Successfully moved to {path}";
+                        CommandExecutor.CurrentUserPath = Path.GetFullPath(path);
+                        return $"Successfully moved to {CommandExecutor.CurrentUserPath}";
                     } else
                     {
                         return "This path doesn't exist.";
@@ -65,11 +65,11 @@ namespace ConsoleFileManager
             }
 
             // Relative path case.
-            string newPath = Utils.CombinePath(CommandExecutor.CurrentUserPath, path);
+            string newPath = Path.Combine(CommandExecutor.CurrentUserPath, path);
             if(Directory.Exists(newPath))
             {
-                CommandExecutor.CurrentUserPath = newPath;
-                return $"Successfully moved to {newPath}";
+                CommandExecutor.CurrentUserPath = Path.GetFullPath(newPath);
+                return $"Successfully moved to {CommandExecutor.CurrentUserPath}";
             }
             return "This path doesn't exist.";
            
