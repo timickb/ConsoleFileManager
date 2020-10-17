@@ -40,18 +40,21 @@ namespace ConsoleFileManager
         // It is assumed that the path satisfies the format <DISK_LETTER>:\<dir0>\<dir1>\...\<dirN>
         public static string RemoveLastPartFromPath(string path)
         {
-            path = PrettifyPath(path);
+            if(path.EndsWith('\\') || path.EndsWith('/'))
+            {
+                path = path.Substring(0, path.Length - 1);
+            }
             int endIndex = 0;
             // Let's find last "\" symbol in the path
             for(int i = path.Length - 1; i > 0; i--)
             {
-                if(path[i] == '\\')
+                if(path[i] == '\\' || path[i] == '/')
                 {
                     endIndex = i;
                     break;
                 }
             }
-            return PrettifyPath(path.Substring(0, endIndex + 1));
+            return path.Substring(0, endIndex + 1);
         }
 
         // It replaces all "\" to "/", removes "\" from the end

@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "D:\\SharpTasks\\ConsoleFileManager\\ConsoleFileManager\\ConsoleFileManager.csproj": {}
+    "/home/timickb/code/ConsoleFileManager/ConsoleFileManager/ConsoleFileManager.csproj": {}
   },
   "projects": {
-    "D:\\SharpTasks\\ConsoleFileManager\\ConsoleFileManager\\ConsoleFileManager.csproj": {
+    "/home/timickb/code/ConsoleFileManager/ConsoleFileManager/ConsoleFileManager.csproj": {
       "version": "0.1.0",
       "restore": {
-        "projectUniqueName": "D:\\SharpTasks\\ConsoleFileManager\\ConsoleFileManager\\ConsoleFileManager.csproj",
+        "projectUniqueName": "/home/timickb/code/ConsoleFileManager/ConsoleFileManager/ConsoleFileManager.csproj",
         "projectName": "ConsoleFileManager",
-        "projectPath": "D:\\SharpTasks\\ConsoleFileManager\\ConsoleFileManager\\ConsoleFileManager.csproj",
-        "packagesPath": "C:\\Users\\timik\\.nuget\\packages\\",
-        "outputPath": "D:\\SharpTasks\\ConsoleFileManager\\ConsoleFileManager\\obj\\",
+        "projectPath": "/home/timickb/code/ConsoleFileManager/ConsoleFileManager/ConsoleFileManager.csproj",
+        "packagesPath": "/home/timickb/.nuget/packages/",
+        "outputPath": "/home/timickb/code/ConsoleFileManager/ConsoleFileManager/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\timik\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/timickb/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -47,12 +45,18 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.8, 3.1.8]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.108/RuntimeIdentifierGraph.json"
         }
       }
     }

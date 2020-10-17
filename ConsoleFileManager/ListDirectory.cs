@@ -51,6 +51,7 @@ namespace ConsoleFileManager
                 subdirList[i] = Path.GetFileName(subdirList[i]) + " [directory]";
             }
 
+            Console.ForegroundColor = ConsoleColor.Green;
             return $"Content of {dirPath}:\n\n" + String.Join('\n', fileList) + '\n' + String.Join('\n', subdirList);
         }
     }
