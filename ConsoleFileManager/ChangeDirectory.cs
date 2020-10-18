@@ -27,51 +27,12 @@ namespace ConsoleFileManager
             {
                 return "Usage: cd <path>";
             }
-            string path = args[1];
-            // Is it absolute or relative?
-
-            // UNIX case.
-            if(RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                // Absolute path case.
-                if(path.StartsWith('/'))
-                {
-                    if(Directory.Exists(path))
-                    {
-                        CommandExecutor.CurrentUserPath = Path.GetFullPath(path);
-                        return $"Successfully moved to {CommandExecutor.CurrentUserPath}";
-                    } else
-                    {
-                        return "This path doesn't exist.";
-                    }
-                    
-                }
-            } 
-            else
-            // Shindows case.
-            {
-                // Absolute path case.
-                if(path.Contains(':'))
-                {
-                    if(Directory.Exists(path))
-                    {
-                        CommandExecutor.CurrentUserPath = Path.GetFullPath(path);
-                        return $"Successfully moved to {CommandExecutor.CurrentUserPath}";
-                    } else
-                    {
-                        return "This path doesn't exist.";
-                    }
-                }
+            string fullPath = Utils.HandleDirectoryPath(args[1]);
+            if(fullPath == "") {
+                return "This directory doesn't exist.";
             }
-
-            // Relative path case.
-            string newPath = Path.Combine(CommandExecutor.CurrentUserPath, path);
-            if(Directory.Exists(newPath))
-            {
-                CommandExecutor.CurrentUserPath = Path.GetFullPath(newPath);
-                return $"Successfully moved to {CommandExecutor.CurrentUserPath}";
-            }
-            return "This path doesn't exist.";
+            CommandExecutor.CurrentUserPath = fullPath;
+            return $"Successfully moved to {fullPath}";
            
         }
     }

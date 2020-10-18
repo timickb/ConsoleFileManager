@@ -21,6 +21,7 @@ namespace ConsoleFileManager
             apps.Add(new FileContentViewer("cat"));
             apps.Add(new ListDirectory("ls"));
             apps.Add(new ChangeDirectory("cd"));
+            apps.Add(new DiskInfo("lsblk"));
         }
         public string Execute(string input)
         {

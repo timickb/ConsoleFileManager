@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace ConsoleFileManager
 {
@@ -23,21 +24,16 @@ namespace ConsoleFileManager
 
         public string Run(string[] args)
         {
-            if(args.Length == 1)
+            if(args.Length < 2)
             {
                 return "Usage: cat <filename>";
             }
-            string[] fileContent;
-            string filePath = CommandExecutor.CurrentUserPath + "\\" + args[1];
-            try
-            {
-                fileContent = File.ReadAllLines(filePath);
-            } catch(IOException)
-            {
-                return $"File {filePath} not found";
+            string fullPath = Utils.HandleFilePath(args[1]);
+            if(fullPath == "") {
+                return "This file doesn't exist.";
             }
-
-            return String.Join('\n', fileContent);
+            string[] fileContent = File.ReadAllLines(fullPath);
+            return String.Join(Environment.NewLine, fileContent);
         }
     }
 }

@@ -22,37 +22,32 @@ namespace ConsoleFileManager
 
         public string Run(string[] args)
         {
-            string[] fileList, subdirList;
-            string dirPath = CommandExecutor.CurrentUserPath;
-            // If it mentioned in command, append a relative path argument.
-            if(args.Length > 1)
-            {
-                dirPath = Path.Combine(dirPath, args[1]);
+            string[] files, directories;
+            string dirPath;
+            if(args.Length == 1) {
+                dirPath = CommandExecutor.CurrentUserPath;
+            } else {
+                dirPath = Utils.HandleDirectoryPath(args[1]);
+                if(dirPath == "") {
+                    return "This directory doesn't exist.";
+                }
             }
-            try
-            {
-                fileList = Directory.GetFiles(dirPath);
-                subdirList = Directory.GetDirectories(dirPath);
-            } catch(DirectoryNotFoundException)
-            {
-                return $"Directory {dirPath} not found.";
-            } catch(IOException)
-            {
-                return $"Cannot access {dirPath}.";
-            }
-
+            files = Directory.GetFiles(dirPath);
+            directories = Directory.GetDirectories(dirPath);
+            
             // We need only file names and dir names => remove path tail.
-            for(int i = 0; i < fileList.Length; i++)
+            for(int i = 0; i < files.Length; i++)
             {
-                fileList[i] = Path.GetFileName(fileList[i]);
+                files[i] = Path.GetFileName(files[i]);
             }
-            for(int i = 0; i < subdirList.Length; i++)
+            for(int i = 0; i < directories.Length; i++)
             {
-                subdirList[i] = Path.GetFileName(subdirList[i]) + " [directory]";
+                directories[i] = Path.GetFileName(directories[i]) + " [directory]";
             }
-
+            
             Console.ForegroundColor = ConsoleColor.Green;
-            return $"Content of {dirPath}:\n\n" + String.Join('\n', fileList) + '\n' + String.Join('\n', subdirList);
+            return $"Content of {dirPath}:\n\n" + String.Join('\n', files) + '\n' + String.Join('\n', directories);
+            
         }
     }
 }
