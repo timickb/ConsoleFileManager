@@ -29,7 +29,7 @@ namespace ConsoleFileManager
                 return "Usage: cat <filename>";
             }
             string fullPath = Utils.HandleFilePath(args[1]);
-            if(fullPath == "") {
+            if(fullPath == String.Empty) {
                 return "This file doesn't exist.";
             }
             string[] fileContent = File.ReadAllLines(fullPath);

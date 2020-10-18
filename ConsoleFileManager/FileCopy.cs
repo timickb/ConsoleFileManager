@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -22,18 +23,39 @@ namespace ConsoleFileManager
 
         public string Run(string[] args)
         {
-            if(args.Length < 3) {
-                return "Usage: cp <source_path> <destination_path>";
+            if(args.Length < 3)
+            {
+                return "Usage: cp <source_file_path> <destination_dir_path>";
             }
-            string srcPath = Utils.FileExists(args[1]);
-            string destPath = Utils.FileExists(args[2]);
-            if(srcPath == String.Empty) {
-                return "Source path doesn't exist.";
+            string srcPath = Utils.HandleFilePath(args[1]);
+            string destPath = Utils.HandleDirectoryPath(args[2]);
+
+            if(srcPath == String.Empty)
+            {
+                return "Source file doesn't exist.";
             }
-            if(destPath == String.Empty) {
-                return "Destination path doesn't exist.";
+            if(destPath == String.Empty)
+            {
+                return "Destination directory doesn't exist.";
             }
-            return "";
+
+            string fileName = Path.GetFileName(srcPath);
+            destPath = Path.Combine(destPath, fileName);
+
+            try
+            {
+                File.Copy(srcPath, destPath);
+            }
+            catch(IOException)
+            {
+                return "This file already exists in destination or something else went wrong.";
+            }
+            catch(UnauthorizedAccessException)
+            {
+                return "Permission denied.";
+            }
+
+            return "Copied!";
         }
     }
 }

@@ -22,6 +22,24 @@ namespace ConsoleFileManager
 
         public string Run(string[] args)
         {
+            if(args.Length < 3)
+            {
+                return "Usage: <src_file_path> <dest_dir_path>";
+            }
+            string filePath = Utils.HandleFilePath(args[1]);
+            string dirPath = Utils.HandleDirectoryPath(args[2]);
+
+            if(filePath == String.Empty)
+            {
+                return "Source file doesn't exist.";
+            }
+            if(dirPath == String.Empty)
+            {
+                return "Destination directory doesn't exist.";
+            }
+
+            
+
             return "";
         }
     }

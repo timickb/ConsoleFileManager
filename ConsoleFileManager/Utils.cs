@@ -7,9 +7,7 @@ using System.Runtime.InteropServices;
 namespace ConsoleFileManager
 {
     /// <summary>
-    /// Different useful methods. All methods suppose
-    /// that input data is correct; they don't handle
-    /// any incorrect cases and don't throw any exceptions.
+    /// Different useful methods.
     /// </summary>
     static class Utils
     {
@@ -95,24 +93,22 @@ namespace ConsoleFileManager
             }
             return String.Empty;
         }
-        // It is assumed that the path satisfies the format <DISK_LETTER>:\<dir0>\<dir1>\...\<dirN>
-        public static string RemoveLastPartFromPath(string path)
-        {
-            if(path.EndsWith(Path.PathSeparator))
+
+        public static Encoding GetEncodingOrReturnNullIfNotFound(string enc) {
+            enc = enc.ToLower();
+            switch(enc)
             {
-                path = path.Substring(0, path.Length - 1);
+                case "utf-8":
+                    return Encoding.UTF8;
+                case "unicode":
+                    return Encoding.Unicode;
+                case "utf-32":
+                    return Encoding.UTF32;
+                case "ascii":
+                    return Encoding.ASCII;
+                default:
+                    return null;
             }
-            int endIndex = 0;
-            // Let's find last "\" symbol in the path
-            for(int i = path.Length - 1; i > 0; i--)
-            {
-                if(path[i] == Path.PathSeparator)
-                {
-                    endIndex = i;
-                    break;
-                }
-            }
-            return path.Substring(0, endIndex + 1);
         }
     }
 }

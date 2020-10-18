@@ -28,7 +28,7 @@ namespace ConsoleFileManager
                 return "Usage: cd <path>";
             }
             string fullPath = Utils.HandleDirectoryPath(args[1]);
-            if(fullPath == "") {
+            if(fullPath == String.Empty) {
                 return "This directory doesn't exist.";
             }
             CommandExecutor.CurrentUserPath = fullPath;

@@ -18,10 +18,16 @@ namespace ConsoleFileManager
 
             // initialize all available applications.
             apps.Add(new Help("help"));
+            apps.Add(new CurrentPath("location"));
             apps.Add(new FileContentViewer("cat"));
             apps.Add(new ListDirectory("ls"));
             apps.Add(new ChangeDirectory("cd"));
             apps.Add(new DiskInfo("lsblk"));
+            apps.Add(new FileCopy("cp"));
+            apps.Add(new FileJoin("concat"));
+            apps.Add(new FileCreate("create"));
+            apps.Add(new FileMove("mv"));
+            apps.Add(new FileRemove("rm"));
         }
         public string Execute(string input)
         {
@@ -36,8 +42,9 @@ namespace ConsoleFileManager
                     return app.Run(args);
                 }
             }
-            if(args[0] == EXIT_COMMAND) {
-                return "Good byte!\n";
+            if(args[0] == EXIT_COMMAND)
+            {
+                return "Bye!\n";
             }
             return "Unknown command. Type \"help\" to get a list of available commands.";
         }

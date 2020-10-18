@@ -28,7 +28,7 @@ namespace ConsoleFileManager
                 dirPath = CommandExecutor.CurrentUserPath;
             } else {
                 dirPath = Utils.HandleDirectoryPath(args[1]);
-                if(dirPath == "") {
+                if(dirPath == String.Empty) {
                     return "This directory doesn't exist.";
                 }
             }

@@ -26,6 +26,7 @@ namespace ConsoleFileManager
             string sep = Environment.NewLine;
             output += "Hi! This is simple Console File Manager (CFM). You can interact with it" + sep;
             output += "as with command line interface using commands from list below:" + sep + sep;
+            output += "location : print your current location in file system" + sep;
             output += "lsblk : print all available drives and their parameters." + sep;
             output += "ls [dir_path] : print the content of directory (current directory by default)" + sep;
             output += "cd <dir_path> : move to another directory" + sep;
