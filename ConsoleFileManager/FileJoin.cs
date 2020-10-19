@@ -102,7 +102,7 @@ namespace ConsoleFileManager
 
             if (Path.HasExtension(file1Name))
             {
-                newFileName += "." + Path.GetExtension(file1Name);
+                newFileName += Path.GetExtension(file1Name);
             }
 
             return GenerateResult(outputDir, newFileContent, newFileName);
