@@ -43,6 +43,10 @@ namespace ConsoleFileManager
             {
                 return "Cannot access this file. Operation failed.";
             }
+            catch (UnauthorizedAccessException)
+            {
+                return $"Permission denied for {filePath}";
+            }
             return String.Join(Environment.NewLine, content);
         }
 

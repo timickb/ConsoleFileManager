@@ -55,6 +55,10 @@ namespace ConsoleFileManager
             {
                 return "Something went wrong :(";
             }
+            catch (UnauthorizedAccessException)
+            {
+                return $"Permission denied for {dirPath}";
+            }
 
             return "File successfully created.";
         }

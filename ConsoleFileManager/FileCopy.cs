@@ -52,7 +52,7 @@ namespace ConsoleFileManager
             }
             catch(UnauthorizedAccessException)
             {
-                return "Permission denied.";
+                return "Permission denied";
             }
 
             return "Copied!";

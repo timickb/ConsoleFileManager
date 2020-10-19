@@ -33,10 +33,15 @@ namespace ConsoleFileManager
                 sw.WriteLine(fileContent);
                 sw.Close();
             }
-            catch(IOException e)
+            catch(IOException)
             {
                 copyStatus = false;
                 return $"Cannot create file in {dirPath}";
+            }
+            catch(UnauthorizedAccessException)
+            {
+                copyStatus = false;
+                return $"Permission to {dirPath} is denied";
             }
             copyStatus = true;
             return $"File moved to {Path.Combine(dirPath, fileName)}";

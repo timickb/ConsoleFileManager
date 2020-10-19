@@ -40,6 +40,10 @@ namespace ConsoleFileManager
                 {
                     return "Cannot access the file.";
                 }
+                catch (UnauthorizedAccessException)
+                {
+                    return $"Permission for {filePath} is denied.";
+                }
             }
             else if (dirPath != String.Empty)
             {
@@ -52,6 +56,10 @@ namespace ConsoleFileManager
                 {
                     Console.WriteLine(e.Message);
                     return "Cannot access the directory.";
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    return $"Permission for {dirPath} is denied.";
                 }
             }
             return $"Object {args[1]} doesn't exist.";

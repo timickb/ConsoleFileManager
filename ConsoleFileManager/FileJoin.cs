@@ -45,13 +45,17 @@ namespace ConsoleFileManager
                 Console.WriteLine(e.Message);
                 return "Cannot get access to the target directory.";
             }
+            catch (UnauthorizedAccessException)
+            {
+                return $"Permission denied for {outputDir}";
+            }
 
             return $"New file is in {Path.Combine(outputDir, newFileName)}";
         }
 
         public string Run(string[] args)
         {
-            if (args.Length < 2)
+            if (args.Length < 3)
             {
                 return "Usage: concat <file1_path> <file2_path> [output_dir_path]" + Environment.NewLine +
                     "If output_dir_path is not specified or incorrect, result of operation will be just" +
@@ -86,14 +90,23 @@ namespace ConsoleFileManager
             {
                 return "Cannot get access to the one of files.";
             }
+            catch (UnauthorizedAccessException)
+            {
+                return "Permission to the one of the files is denied.";
+            }
 
             string file1Name = Path.GetFileName(file1);
             string file2Name = Path.GetFileName(file2);
-            string newFileContent = firstFileContent + secondFileContent;
+            string newFileContent = firstFileContent + Environment.NewLine + secondFileContent;
             // By default new file name is a concatenation of two previous.
             string newFileName =
                 Path.GetFileNameWithoutExtension(file1Name) +
                 Path.GetFileNameWithoutExtension(file2Name);
+            
+            if(Path.HasExtension(file1Name))
+            {
+                newFileName += "." + Path.GetExtension(file1Name);
+            }
 
             return GenerateResult(outputDir, newFileContent, newFileName);
         }
