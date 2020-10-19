@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace ConsoleFileManager
@@ -9,7 +7,6 @@ namespace ConsoleFileManager
     class FileJoin : IApplication
     {
         public string Name { get; set; }
-        public string[] Arguments { get; set; }
 
         public FileJoin(string name)
         {
@@ -102,8 +99,8 @@ namespace ConsoleFileManager
             string newFileName =
                 Path.GetFileNameWithoutExtension(file1Name) +
                 Path.GetFileNameWithoutExtension(file2Name);
-            
-            if(Path.HasExtension(file1Name))
+
+            if (Path.HasExtension(file1Name))
             {
                 newFileName += "." + Path.GetExtension(file1Name);
             }

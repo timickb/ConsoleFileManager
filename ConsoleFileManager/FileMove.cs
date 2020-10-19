@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace ConsoleFileManager
@@ -12,7 +10,6 @@ namespace ConsoleFileManager
         private bool copyStatus;
 
         public string Name { get; set; }
-        public string[] Arguments { get; set; }
 
         public FileMove(string name)
         {
@@ -33,12 +30,12 @@ namespace ConsoleFileManager
                 sw.WriteLine(fileContent);
                 sw.Close();
             }
-            catch(IOException)
+            catch (IOException)
             {
                 copyStatus = false;
                 return $"Cannot create file in {dirPath}";
             }
-            catch(UnauthorizedAccessException)
+            catch (UnauthorizedAccessException)
             {
                 copyStatus = false;
                 return $"Permission to {dirPath} is denied";

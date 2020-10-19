@@ -1,15 +1,11 @@
 using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 
 namespace ConsoleFileManager
 {
     class FileRemove : IApplication
     {
         public string Name { get; set; }
-        public string[] Arguments { get; set; }
 
         public FileRemove(string name)
         {

@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Runtime.InteropServices;
 
 namespace ConsoleFileManager
 {
     class FileContentViewer : IApplication
     {
         public string Name { get; set; }
-        public string[] Arguments { get; set; }
 
         public FileContentViewer(string name)
         {

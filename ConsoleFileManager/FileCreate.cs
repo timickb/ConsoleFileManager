@@ -7,7 +7,6 @@ namespace ConsoleFileManager
     class FileCreate : IApplication
     {
         public string Name { get; set; }
-        public string[] Arguments { get; set; }
 
         public FileCreate(string name)
         {
@@ -21,13 +20,13 @@ namespace ConsoleFileManager
 
         public string Run(string[] args)
         {
-            if(args.Length < 2)
+            if (args.Length < 2)
             {
                 return "Usage: create <dir_path>";
             }
             string dirPath = Utils.HandleDirectoryPath(args[1]);
 
-            if(dirPath == String.Empty)
+            if (dirPath == String.Empty)
             {
                 return "This directory doesn't exist.";
             }
@@ -36,15 +35,17 @@ namespace ConsoleFileManager
             string fileName = Console.ReadLine();
 
             Encoding enc = null;
-            do {
+            do
+            {
                 Console.Write("Please specify an encoding for this file: ");
                 string encodingInput = Console.ReadLine();
                 enc = Utils.GetEncodingOrReturnNullIfNotFound(encodingInput);
-                if(enc == null) {
+                if (enc == null)
+                {
                     Console.WriteLine("Incorrect encoding. Choose one from list: utf-8, utf-32, ascii, unicode.");
                 }
-            } while(enc == null);
-            
+            } while (enc == null);
+
             try
             {
                 StreamWriter sw = new StreamWriter(File.Open(Path.Combine(dirPath, fileName), FileMode.Create), enc);

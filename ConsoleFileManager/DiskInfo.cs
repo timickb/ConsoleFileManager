@@ -1,15 +1,12 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 
 namespace ConsoleFileManager
 {
     class DiskInfo : IApplication
     {
         public string Name { get; set; }
-        public string[] Arguments { get; set; }
 
         public DiskInfo(string name)
         {
@@ -25,9 +22,11 @@ namespace ConsoleFileManager
         {
             DriveInfo[] driveInfo = System.IO.DriveInfo.GetDrives();
             List<string> drives = new List<string>();
-            foreach(var drive in driveInfo) {
+            foreach (var drive in driveInfo)
+            {
                 string block = $"Drive: {drive.Name}, Type: {drive.DriveType}{Environment.NewLine}";
-                if(drive.IsReady) {
+                if (drive.IsReady)
+                {
                     block += $"Volume label: {drive.VolumeLabel}{Environment.NewLine}";
                     block += $"File system: {drive.DriveFormat}{Environment.NewLine}";
                     block += $"Free space: {drive.TotalFreeSpace}{Environment.NewLine}";

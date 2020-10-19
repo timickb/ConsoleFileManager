@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace ConsoleFileManager
 {
@@ -11,12 +9,12 @@ namespace ConsoleFileManager
         public static string CurrentUserPath = Directory.GetCurrentDirectory();
 
         private List<IApplication> apps;
-        
+
         public CommandExecutor()
         {
             apps = new List<IApplication>();
 
-            // initialize all available applications.
+            // Initialize all available applications.
             apps.Add(new Help("help"));
             apps.Add(new CurrentPath("location"));
             apps.Add(new FileContentViewer("cat"));
@@ -28,6 +26,7 @@ namespace ConsoleFileManager
             apps.Add(new FileCreate("create"));
             apps.Add(new FileMove("mv"));
             apps.Add(new FileRemove("rm"));
+            apps.Add(new MakeDirectory("mkdir"));
         }
         public string Execute(string input)
         {
@@ -35,14 +34,14 @@ namespace ConsoleFileManager
             string appName = args[0];
 
             // Find an application with this name in the list and run it.
-            foreach(var app in apps)
+            foreach (var app in apps)
             {
-                if(app.Name == appName)
+                if (app.Name == appName)
                 {
                     return app.Run(args);
                 }
             }
-            if(args[0] == EXIT_COMMAND)
+            if (args[0] == EXIT_COMMAND)
             {
                 return "Bye!\n";
             }
